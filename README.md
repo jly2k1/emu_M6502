@@ -8,7 +8,7 @@ El MOS 6502 es un microprocesador de 8 bits fabricado por la empresa Mos Technol
 ## Descripción tecnica del MOS 6502.
 
 ### Registros.
-El M6502 posee registros los siguientes registros:
+El M6502 posee los siguientes registros:
 
 - **Acumulador**. El registro es de 8 bits.
 - **Indice X**. El registro es de 8 bits.
