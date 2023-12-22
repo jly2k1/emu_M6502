@@ -17,6 +17,7 @@ El M6502 posee los siguientes registros:
 - **Registro de estado**. Este registro es similar al registro FLAGS de los procesadores Intel x86 y contiene el estado actual del procesador. Por ejemplo, si hubo un acarreo en alguna operación aritmética o si el resultado fue cero, uno de los bits de este registro se pondra en '1' o en '0' si se a dado tal situación o no. Este registro tambien es de 8 bits. 
 - **Contador de programa (PC)**. Registro que apunta a la siguiente instrucción que se debe ejecutar. Este registro es de 16 bits. **¡Aunque!** la arquitectura del M6502 nos muestra que éste está divido en dos registros de 8 bits (pues recuerdése que este procesador es de 8 bits). Sin embargo, en el emulador lo representaremos con un tipo de dato de 16 bits.
 
+![registros del M6502](https://github.com/jly2k1/emu_M6502/blob/main/imagenes/registrosmo6502.png)
 
 ## Memoria.
 
