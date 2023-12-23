@@ -42,21 +42,25 @@ class mos6502
 		struct instruccion instrucciones[256];
 
 		public:
+			//getters y setters.
+			void set_PC(uint16_t PC);
+			uint16_t get_PC();
+		
 			//Memoria.
 
 			uint8_t Read_mem(uint16_t direccion);
 			void Write_mem(uint16_t direccion, uint8_t datos);
-
+			
 			//Modos de direccionamiento. 
-			uint8_t dic_abs();
-			uint8_t dic_absX();
-			uint8_t dic_absY();
-			uint8_t dic_imp();
-			uint8_t dic_ind();
-			uint8_t dic_indX();
-			uint8_t dic_indY();
-			uint8_t dic_rel();
-			uint8_t dic_zp();
-			uint8_t dic_zpX();
-			uint8_t dic_zpY();	
+			uint16_t dic_abs();
+			uint16_t dic_absX();
+			uint16_t dic_absY();
+			uint16_t dic_imp();
+			uint16_t dic_ind();
+			uint16_t dic_indX();
+			uint16_t dic_indY();
+			uint16_t dic_rel();
+			uint16_t dic_zp();
+			uint16_t dic_zpX();
+			uint16_t dic_zpY();	
 };
