@@ -45,13 +45,18 @@ class mos6502
 			//getters y setters.
 			void set_PC(uint16_t PC);
 			uint16_t get_PC();
-		
+			void set_regX(uint8_t reg_X);
+			uint8_t get_regX();
+			void set_regY(uint8_t reg_Y);
+			uint8_t get_regY();			
+
 			//Memoria.
 
 			uint8_t Read_mem(uint16_t direccion);
 			void Write_mem(uint16_t direccion, uint8_t datos);
 			
 			//Modos de direccionamiento. 
+			uint16_t dic_inm();
 			uint16_t dic_abs();
 			uint16_t dic_absX();
 			uint16_t dic_absY();
