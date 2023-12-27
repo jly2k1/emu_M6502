@@ -7,14 +7,14 @@ using namespace std;
 
 //getters y setters
 
-void mos6502::set_PC(uint16_t PC)
+void mos6502::set_acum(uint8_t acumulador)
 {
-	this->PC = PC; 
+	this->acumulador = acumulador;
 }
 
-uint16_t mos6502::get_PC()
+uint8_t mos6502::get_acum()
 {
-	return this->PC;
+	return this->acumulador;
 }
 
 void mos6502::set_regX(uint8_t reg_X)
@@ -35,6 +35,36 @@ void mos6502::set_regY(uint8_t reg_Y)
 uint8_t mos6502::get_regY()
 {
 	return this->reg_Y;
+}
+
+void mos6502::set_PC(uint16_t PC)
+{
+	this->PC = PC; 
+}
+
+uint16_t mos6502::get_PC()
+{
+	return this->PC;
+}
+
+void mos6502::set_SP(uint8_t SP)
+{
+	this->SP = SP;
+}
+
+uint8_t mos6502::get_SP()
+{
+	return this->SP;
+}
+
+void mos6502::set_regEst(uint8_t reg_estado)
+{
+	this->reg_estado = reg_estado;
+}
+
+uint8_t mos6502::get_regEst()
+{
+	return this->reg_estado; 
 }
 
 //Accesos a la memoria. 
@@ -196,7 +226,6 @@ uint16_t mos6502::dic_indY() //Modo de direccionamiento-Y
 	uint16_t dir_zpl = Read_mem(pc);
 	uint16_t dir_zph = 0; 
 
-		
 	dir_zpl += get_regY();
 	dir_zpl &= 0x00FF; 
 	 
@@ -263,4 +292,111 @@ uint16_t mos6502::dic_zpY() //Modo de direccionamiento pagina cero-Y
 	dir_comp += get_regY();
 
 	return dir_comp;
+}
+
+//Opcodes.
+
+void mos6502::op_LDA(uint16_t dir)
+{
+	uint8_t dato = Read_mem(dir);
+
+	uint8_t reg_est = get_regEst();
+
+	if(dato == 0)
+	{
+		reg_est |= ZERO_FLAG;		
+	}
+	else //Reestablecimiento de FLAGS.
+	{
+		reg_est &= 0x01;
+	}
+
+	if((dato & 0x80) >> 7 == 1) { //!
+		reg_est |= SIG_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x7F;
+	}
+
+	set_regEst(reg_est);
+
+	set_acum(dato);
+}
+
+void mos6502::op_LDX(uint16_t dir)
+{
+	uint8_t dato = Read_mem(dir);
+
+	uint8_t reg_est = get_regEst();
+
+	if(dato == 0)
+	{
+		reg_est |= ZERO_FLAG;		
+	}
+	else //Reestablecimiento de FLAGS.
+	{
+		reg_est &= 0x01;
+	}
+
+	if((dato & 0x80) >> 7 == 1) { //!
+		reg_est |= SIG_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x7F;
+	}
+
+	set_regEst(reg_est);
+
+	set_regX(dato);	
+}
+
+void mos6502::op_LDY(uint16_t dir)
+{
+	uint8_t dato = Read_mem(dir);
+
+	uint8_t reg_est = get_regEst();
+
+	if(dato == 0)
+	{
+		reg_est |= ZERO_FLAG;		
+	}
+	else //Reestablecimiento de FLAGS.
+	{
+		reg_est &= 0x01;
+	}
+
+	if((dato & 0x80) >> 7 == 1) { //!
+		reg_est |= SIG_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x7F;
+	}
+
+	set_regEst(reg_est);
+
+	set_regY(dato);	
+}
+
+void mos6502::op_STA(uint16_t dir)
+{
+	uint8_t dato = get_acum();
+
+	Write_mem(dir, dato);
+}
+
+void mos6502::op_STX(uint16_t dir)
+{
+	uint8_t dato = get_regX();
+
+	Write_mem(dir, dato);
+}
+
+void mos6502::op_STY(uint16_t dir)
+{
+	uint8_t dato = get_regY();
+
+	Write_mem(dir, dato);
 }

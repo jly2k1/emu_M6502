@@ -43,12 +43,19 @@ class mos6502
 
 		public:
 			//getters y setters.
-			void set_PC(uint16_t PC);
-			uint16_t get_PC();
+			
+			void set_acum(uint8_t acumulador);
+			uint8_t get_acum();
 			void set_regX(uint8_t reg_X);
 			uint8_t get_regX();
 			void set_regY(uint8_t reg_Y);
 			uint8_t get_regY();			
+			void set_PC(uint16_t PC);
+			uint16_t get_PC();
+			void set_SP(uint8_t SP);
+			uint8_t get_SP();
+			void set_regEst(uint8_t reg_estado);
+			uint8_t get_regEst();
 
 			//Memoria.
 
@@ -68,4 +75,13 @@ class mos6502
 			uint16_t dic_zp();
 			uint16_t dic_zpX();
 			uint16_t dic_zpY();	
+
+			//Opcodes.
+
+			void op_LDA(uint16_t dir);
+			void op_LDX(uint16_t dir);
+			void op_LDY(uint16_t dir);
+			void op_STA(uint16_t dir);
+			void op_STX(uint16_t dir);
+			void op_STY(uint16_t dir);
 };
