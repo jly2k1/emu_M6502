@@ -21,10 +21,28 @@ El M6502 posee los siguientes registros:
 
 ## Memoria.
 
-El M6052 puede direccionar hasta 64 KB de memoria (memoria RAM, claro) debido al bus de direcciones que posee; el cual es de 16 bits. Dicha memoria está divida en paginas esto es, la memoria se divide en bloques de 256 bytes y cada bloque se le llama *pagina* o «page». Cada pagina tiene un propósito especifico. 
+El M6052 puede direccionar hasta 64 KB de memoria (memoria RAM, claro) debido al bus de direcciones que posee; el cual es de 16 bits. Dicha memoria está divida en paginas esto es, la memoria se divide en bloques de 256 bytes y cada bloque se le llama *pagina* o «page». Cada pagina tiene un propósito especifico:
+
+|  Pagina  |  Nombre  |  Dirección inicial  |  Dirección final  |  Propósito                                                                    |
+|----------|----------|---------------------|-------------------|-------------------------------------------------------------------------------|
+|    00    | Pag.Cero |        $0000        |      $00FF        | Variables que requieren acceso rápido.                                        |
+|    01    | Pila     |        $0100        |      $01FF        | Memoria reservada para la pila de llamadas (stack).                           |
+|    FF    |Vect.Table|        $FF00        |      $FFFF        | Contiene punteros relacionados a las interrupciones o al reinicio del sistema.|
+
+Para más información, consulta la seccion de referencias y documentación consultada.
+
+> [!NOTE]
+> $xxxx es la notación númerica para referirse a una dirección de memoria y la cual hace uso del sistema de númeracion hexadecimal. Así, FF = 256 en el sistema decimal por ejemplo.
 
 ## Modos de direccionamiento.
 
+Los modos de direccionamiento son las diferentes maneras de especificar los operandos dentro de las instrucciones del lenguaje ensamblador. Por tanto, especifican la forma de calcular las direcciones de memoría donde se encuentran dichos operandos. A estas direcciones tambien se les llaman de forma singular como **dirección efectiva**.
+
+El MOS 6502 posee 13 modos de direccionamiento. 13 formas de especificar los operandos en las instrucciones del lenguaje ensamblador de este CPU. A continuación se muestran de forma breve estos modos:
+
+<!--Colocar los modos de direccionamiento.-->
+
+## Set de instrucciones.
 
 ## Referencias y documentación consultada. 
 [6502.org](http://www.6502.org/)
