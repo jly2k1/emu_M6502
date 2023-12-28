@@ -367,7 +367,7 @@ void mos6502::op_LDY(uint16_t dir)
 		reg_est &= 0x01;
 	}
 
-	if((dato & 0x80) >> 7 == 1) { //!
+	if(dato & 0x80) { //!
 		reg_est |= SIG_FLAG;
 	}
 	else
@@ -399,4 +399,98 @@ void mos6502::op_STY(uint16_t dir)
 	uint8_t dato = get_regY();
 
 	Write_mem(dir, dato);
+}
+
+////
+
+void mos6502::op_TAX(uint16_t dir)
+{
+	uint8_t acum = get_acum();
+	uint8_t reg_est = get_regEst();
+
+	if(acum == 0)
+	{
+		reg_est |= ZERO_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x01;
+	}
+
+	if(acum & 0x80)
+	{
+		reg_est |= SIG_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x7F;
+	}
+	
+	set_regEst(reg_est);
+
+	set_regX(acum);	
+}
+
+void mos6502::op_TAY(uint16_t dir)
+{
+	uint8_t acum = get_acum();
+	uint8_t reg_est = get_regEst();
+
+	if(acum == 0)
+	{
+		reg_est |= ZERO_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x01;
+	}
+
+	if(acum & 0x80)
+	{
+		reg_est |= SIG_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x7F;
+	}
+
+	set_regEst(reg_est);	
+	
+	set_regY(acum);
+}
+
+void mos6502::op_TSX(uint16_t dir)
+{
+	uint8_t reg_x = get_regX();
+
+	
+	set_SP(reg_x);
+}
+
+void mos6502::op_TYA(uint16_t dir)
+{
+	uint8_t reg_y = get_regY();
+	uint8_t reg_est = get_regEst();
+
+	if(reg_y == 0)
+	{
+		reg_est |= ZERO_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x01;
+	}
+
+	if(reg_y & 0x80)
+	{
+		reg_est |= SIG_FLAG;
+	}
+	else
+	{
+		reg_est &= 0x7F;
+	}
+
+	set_regEst(reg_est);	
+	
+	set_acum(reg_y);
 }

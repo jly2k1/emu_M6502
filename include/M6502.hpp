@@ -84,4 +84,11 @@ class mos6502
 			void op_STA(uint16_t dir);
 			void op_STX(uint16_t dir);
 			void op_STY(uint16_t dir);
+			
+			void op_TAX(uint16_t dir);
+			void op_TAY(uint16_t dir);
+			void op_TSX(uint16_t dir);
+			void op_TXA(uint16_t dir);
+			void op_TXS(uint16_t dir);
+			void op_TYA(uint16_t dir);
 };
