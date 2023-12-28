@@ -38,9 +38,23 @@ Para más información, consulta la seccion de referencias y documentación cons
 
 Los modos de direccionamiento son las diferentes maneras de especificar los operandos dentro de las instrucciones del lenguaje ensamblador. Por tanto, especifican la forma de calcular las direcciones de memoría donde se encuentran dichos operandos. A estas direcciones tambien se les llaman de forma singular como **dirección efectiva**.
 
+> [!NOTE]
+> Las instrucciones del M6502 tienen una longitud de 3 bytes o 21 bits.
+> Las direcciones de memoria son de 16 bits o 2 bytes.
+
+> [!IMPORTANT]
+> Los datos se guardan en memoria en orden Little-Endian. Es decir, el byte menos significativo se guarda primero en la memoria y en la siguiente dirección el byte más significativo. Más información aquí: [Endiannes](https://es.wikipedia.org/wiki/Endianness) 
+
 El MOS 6502 posee 13 modos de direccionamiento. 13 formas de especificar los operandos en las instrucciones del lenguaje ensamblador de este CPU. A continuación se muestran de forma breve estos modos:
 
-<!--Colocar los modos de direccionamiento.-->
+- **Modo de direccionamiento inmediato**. El operando se ubica en el segundo byte de la instrucción. Esto es «al lado» del opcode.
+![Representación de este modo de direccionamiento.](https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/DireccionamientoInmediato.png/220px-DireccionamientoInmediato.png)
+- **Modo de direccionamiento absoluto**. En el campo del operando se encuentrá la dirección de memoria donde se haya dicho operando. ![Modo de direccionamiento absoluto](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DireccionamientoDirecto.png/220px-DireccionamientoDirecto.png)
+- **Modo de direccionamiento Implícito**. La dirección de memoria donde se encuentra el operando se ubica en el mismo opcode.
+- **Modo de direccionamiento Acumulador (!)**. Este modo presenta una longitud de 1 byte. Se opera con el acumulador.
+- **Modo de direccionamiento Absoluto Indexado X (!)**. Este modo es igual que el modo absoluto. Solo que a la direccion efectiva se le suma el contenido del registro indice X.
+- **Modo de direccionamiento Absoluto Indexado Y (!)**. Igual al modo anterior. Pero a la dirección efectiva se le suma el contenido del registro indice Y.
+  <!---Colocar los demas modos--> 
 
 ## Set de instrucciones.
 
@@ -48,3 +62,5 @@ El MOS 6502 posee 13 modos de direccionamiento. 13 formas de especificar los ope
 [6502.org](http://www.6502.org/)
 [Cdot wiki 6502](https://wiki.cdot.senecacollege.ca/wiki/6502)
 [Articulo de la wikipedia](https://en.wikipedia.org/wiki/MOS_Technology_6502)
+[6502 CPU](https://www.pagetable.com/c64ref/6502/?tab=0)
+[Fake 6502](http://rubbermallet.org/fake6502.c)
